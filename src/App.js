@@ -1,25 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
+import data from './components/Data';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className="main">
+      <header>
+        <h1>Create Playlist</h1>
       </header>
+      <main>
+        <div class="music-desc">
+          <div class="container">
+            <div class="music-content">
+              <img
+                src={data.album.images[1].url}
+                alt="album"
+              />
+              <h3>Title: {data.name}</h3>
+              <p>Artist: {data.artists[0].name}</p>
+              <p>Album: {data.album.name}</p>
+              <button>Select</button>
+            </div>
+          </div>
+        </div>
+      </main>
     </div>
   );
 }
 
+const spotify_secret_key = process.env.REACT_APP_CLIENT_ID;
 export default App;
