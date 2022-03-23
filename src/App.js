@@ -8,9 +8,9 @@ function App() {
         <h1>Create Playlist</h1>
       </header>
       <main>
-        <div class="music-desc">
-          <div class="container">
-            <div class="music-content">
+        <div className="music-desc">
+          <div className="container">
+            <div className="music-content">
               <img
                 src={data.album.images[1].url}
                 alt="album"
