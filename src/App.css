@@ -1,5 +1,5 @@
 html {
-  background-image: linear-gradient(to bottom right, #ffb3b3, #212121);
+  background: #191414;
   /* background-size: cover; */
   height: 100%;
 }
@@ -8,15 +8,20 @@ html {
   margin: 0 20px;
 }
 
+header h1 {
+  color: white;
+}
+
 .music-content {
-  border: 2px solid black;
+  border: 2px solid #1DB954;
   border-radius: 5px;
   text-align: center;
   padding: 20px 0;
+  color: white;
 }
 
 button {
-  border: 2px solid black;
+  border: 2px solid #1DB954;
   border-radius: 10px;
   margin: 20px 0;
   padding: 10px;
@@ -24,4 +29,10 @@ button {
   background-color: transparent;
   cursor: pointer;
   transition: all 1s;
+  color: white;
+}
+
+button:hover {
+  background-color: #1DB954;
+  color: black;
 }
