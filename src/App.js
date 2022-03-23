@@ -1,5 +1,7 @@
 import './App.css';
-import data from './components/Data';
+import data from './components/data/index';
+import Button from './components/button/index';
+import Music from './components/music';
 
 function App() {
   return (
@@ -11,14 +13,13 @@ function App() {
         <div className="music-desc">
           <div className="container">
             <div className="music-content">
-              <img
-                src={data.album.images[1].url}
-                alt="album"
+              <Music
+                image={data.album.images[1].url}
+                title={data.name} 
+                artist={data.artists[0].name}
+                album={data.album.name}
               />
-              <h3>Title: {data.name}</h3>
-              <p>Artist: {data.artists[0].name}</p>
-              <p>Album: {data.album.name}</p>
-              <button>Select</button>
+              <Button />
             </div>
           </div>
         </div>
