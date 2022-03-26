@@ -1,5 +1,6 @@
+import Button from "../button";
 const Music = ({image, title, artist, album}) => {
-    return <div className="music-desc">
+    return <div className="music-box">
             <img
             src={image}
             alt="album"
@@ -7,6 +8,7 @@ const Music = ({image, title, artist, album}) => {
             <h3>Title: {title}</h3>
             <p>Artist: {artist}</p>
             <p>Album: {album}</p>
+            <Button />
         </div>;
 }
 

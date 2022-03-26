@@ -1,9 +1,19 @@
 import './App.css';
 import data from './components/data/index';
-import Button from './components/button/index';
+// import Button from './components/button/index';
 import Music from './components/music';
 
 function App() {
+
+  const renderSongs = data.map((song) => 
+  <Music
+    key={song.id}
+    image={song.album.images[1].url}
+    title={song.name}
+    artist={song.artists[0].name}
+    album={song.album.name}
+  />)
+
   return (
     <div className="main">
       <header>
@@ -13,13 +23,9 @@ function App() {
         <div className="music-desc">
           <div className="container">
             <div className="music-content">
-              <Music
-                image={data.album.images[1].url}
-                title={data.name} 
-                artist={data.artists[0].name}
-                album={data.album.name}
-              />
-              <Button />
+              <div className="music-list">
+                {renderSongs}
+              </div>
             </div>
           </div>
         </div>

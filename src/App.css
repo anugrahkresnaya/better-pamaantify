@@ -30,9 +30,31 @@ button {
   cursor: pointer;
   transition: all 1s;
   color: white;
+  width: 150px;
 }
 
 button:hover {
   background-color: #1DB954;
   color: black;
+}
+
+.music-box {
+  /* border: 1px solid white; */
+  margin-bottom: 20px;
+  width: 40%;
+}
+
+.music-box:hover {
+  background-color: #2e2e2e;
+}
+
+.music-list {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+img {
+  padding-top: 20px;
 }
