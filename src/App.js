@@ -10,6 +10,8 @@ function App() {
   const [token, setToken] = useState('');
   const [searchMusic, setSearchMusic] = useState('');
   const [musicData, setMusicData] = useState([]);
+  const [selectedMusic, setSelectedMusic] = useState([]);
+  const [combinedMusics, setCombinedMusics] = useState([]);
   
   useEffect(() => {
     const queryString = new URL(window.location.href.replace('#', '?')).searchParams;
@@ -26,13 +28,35 @@ function App() {
       });
   };
 
-  const renderSongs = musicData.map((song) => 
+  const handleSelectedMusic = (uri) => {
+    const alreadySelected = selectedMusic.find(m => m === uri);
+    if (alreadySelected) {
+      setSelectedMusic(selectedMusic.filter(m => m === uri))
+    } else {
+      setSelectedMusic([...selectedMusic, uri])
+    }
+
+    console.log(selectedMusic)
+  }
+
+  useEffect(() => {
+    const combinedMusicsWithSelectedMusic = musicData.map((music) => ({
+      ...music,
+      isSelected: !!selectedMusic.find((m) => m === m.uri)
+    }));
+    setCombinedMusics(combinedMusicsWithSelectedMusic);
+    console.log(combinedMusicsWithSelectedMusic)
+  }, [selectedMusic, musicData])
+
+  const renderSongs = combinedMusics.map((song) => 
   <Music
     key={song.id}
     image={song.album.images[1].url}
     title={song.name}
     artist={song.artists[0].name}
     album={song.album.name}
+    onSelectTrack={handleSelectedMusic}
+    uri={song.uri}
   />)
 
   return (
