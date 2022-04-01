@@ -31,7 +31,7 @@ function App() {
   const handleSelectedMusic = (uri) => {
     const alreadySelected = selectedMusic.find(m => m === uri);
     if (alreadySelected) {
-      setSelectedMusic(selectedMusic.filter(m => m === uri))
+      setSelectedMusic(selectedMusic.filter(m => m !== uri))
     } else {
       setSelectedMusic([...selectedMusic, uri])
     }
@@ -42,11 +42,11 @@ function App() {
   useEffect(() => {
     const combinedMusicsWithSelectedMusic = musicData.map((music) => ({
       ...music,
-      isSelected: !!selectedMusic.find((m) => m === m.uri)
+      isSelected: selectedMusic.find((m) => m === music.uri) ? true : false,
     }));
     setCombinedMusics(combinedMusicsWithSelectedMusic);
-    console.log(combinedMusicsWithSelectedMusic)
-  }, [selectedMusic, musicData])
+    // console.log(combinedMusicsWithSelectedMusic);
+  }, [selectedMusic, musicData]);
 
   const renderSongs = combinedMusics.map((song) => 
   <Music
@@ -55,9 +55,10 @@ function App() {
     title={song.name}
     artist={song.artists[0].name}
     album={song.album.name}
-    onSelectTrack={handleSelectedMusic}
+    onSelectMusic={handleSelectedMusic}
     uri={song.uri}
-  />)
+    isSelected={song.isSelected}
+  />);
 
   return (
     <div className="main">
