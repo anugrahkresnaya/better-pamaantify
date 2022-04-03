@@ -2,6 +2,7 @@ import './App.css';
 // import data from './components/data/index';
 // import searchBar from './pages/search';
 import Music from './components/music';
+import CreatePlaylist from './components/playlist';
 import { useState, useEffect } from 'react';
 import url from './components/data/Auth';
 import axios from 'axios';
@@ -12,11 +13,36 @@ function App() {
   const [musicData, setMusicData] = useState([]);
   const [selectedMusic, setSelectedMusic] = useState([]);
   const [combinedMusics, setCombinedMusics] = useState([]);
+  const [user, setUser] = useState({});
+  const [isLogin, setIsLogin] = useState(false);
   
   useEffect(() => {
     const queryString = new URL(window.location.href.replace('#', '?')).searchParams;
     const accessToken = queryString.get('access_token');
     setToken(accessToken);
+    if (accessToken !== null) {
+      setToken(accessToken);
+      setIsLogin(accessToken !== null);
+
+      const setUserProfile = async () => {
+        try {
+          const requestOptions = {
+            headers: {
+              'Authorization': 'Bearer ' + accessToken,
+              'Content-Type': 'appliaction/json',
+            },
+          };
+          console.log(requestOptions);
+
+          const response = await fetch(`https://api.spotify.com/v1/me`, requestOptions).then(data => data.json());
+          console.log(response);
+          setUser(response);
+        } catch(err) {
+          alert(err)
+        }
+      }
+      setUserProfile();
+    }
   }, []);
 
   const getMusic = async () => {
@@ -45,7 +71,7 @@ function App() {
       isSelected: selectedMusic.find((m) => m === music.uri) ? true : false,
     }));
     setCombinedMusics(combinedMusicsWithSelectedMusic);
-    // console.log(combinedMusicsWithSelectedMusic);
+    console.log(combinedMusicsWithSelectedMusic);
   }, [selectedMusic, musicData]);
 
   const renderSongs = combinedMusics.map((song) => 
@@ -68,12 +94,15 @@ function App() {
             <h1>Pamaantify</h1>
           </div>
           <div className="login">
-            <a href={url}>Login</a>
+            {!isLogin && (<a href={url}>Login</a>)}
           </div>
         </div>
         <h1>Create Playlist</h1>
       </header>
       <main>
+        <div className="playlist-content">
+          {isLogin && (<CreatePlaylist accessToken={token} userId={user.id} uris={selectedMusic}/>)}
+        </div>
         <div className="search-bar">
           <input type="search" onChange={(e) => setSearchMusic(e.target.value)} />
           <button onClick={getMusic}>search</button>
