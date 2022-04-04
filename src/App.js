@@ -29,7 +29,7 @@ function App() {
           const requestOptions = {
             headers: {
               'Authorization': 'Bearer ' + accessToken,
-              'Content-Type': 'appliaction/json',
+              'Content-Type': 'application/json',
             },
           };
           console.log(requestOptions);
