@@ -4,11 +4,15 @@ import './App.css';
 import Music from './components/music';
 import CreatePlaylist from './components/playlist';
 import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { setToken } from './store/tokenSlice';
 import url from './components/data/Auth';
 import axios from 'axios';
 
 function App() {
-  const [token, setToken] = useState('');
+  const token = useSelector((state) => state.token);
+  const dispatch = useDispatch();
+  const [accToken, setAccToken] = useState('');
   const [searchMusic, setSearchMusic] = useState('');
   const [musicData, setMusicData] = useState([]);
   const [selectedMusic, setSelectedMusic] = useState([]);
@@ -19,9 +23,9 @@ function App() {
   useEffect(() => {
     const queryString = new URL(window.location.href.replace('#', '?')).searchParams;
     const accessToken = queryString.get('access_token');
-    setToken(accessToken);
+    setAccToken(accessToken);
     if (accessToken !== null) {
-      setToken(accessToken);
+      setAccToken(accessToken);
       setIsLogin(accessToken !== null);
 
       const setUserProfile = async () => {
@@ -41,13 +45,14 @@ function App() {
           alert(err)
         }
       }
+      dispatch(setToken(accessToken));
       setUserProfile();
     }
-  }, []);
+  }, [dispatch]);
 
   const getMusic = async () => {
     await axios
-      .get(`https://api.spotify.com/v1/search?q=${searchMusic}&type=track&access_token=${token}`)
+      .get(`https://api.spotify.com/v1/search?q=${searchMusic}&type=track&access_token=${accToken}`)
       .then((response) => setMusicData(response.data.tracks.items))
       .catch((err) => {
         console.log(err);
@@ -98,10 +103,15 @@ function App() {
           </div>
         </div>
         <h1>Create Playlist</h1>
+        {/* <p>{token.token}</p> */}
       </header>
       <main>
         <div className="playlist-content">
-          {isLogin && (<CreatePlaylist accessToken={token} userId={user.id} uris={selectedMusic}/>)}
+          {isLogin && (
+            <>
+              <CreatePlaylist accessToken={accToken} userId={user.id} uris={selectedMusic}/>
+            </>
+          )}
         </div>
         <div className="search-bar">
           <input type="search" onChange={(e) => setSearchMusic(e.target.value)} />
