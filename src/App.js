@@ -99,7 +99,7 @@ function App() {
             <h1>Pamaantify</h1>
           </div>
           <div className="login">
-            {!isLogin && (<a href={url}>Login</a>)}
+            {!isLogin ? <a href={url}>Login</a> : <a href='http://localhost:3000/'>Logout</a>}
           </div>
         </div>
         <h1>Create Playlist</h1>
