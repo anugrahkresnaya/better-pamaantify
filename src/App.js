@@ -18,12 +18,8 @@ import {
 
 function App() {
   const token = useSelector((state) => state.token);
-  const dispatch = useDispatch();
   const [accToken, setAccToken] = useState("");
-  const [searchMusic, setSearchMusic] = useState("");
-  const [musicData, setMusicData] = useState([]);
-  const [selectedMusic, setSelectedMusic] = useState([]);
-  const [combinedMusics, setCombinedMusics] = useState([]);
+  const dispatch = useDispatch();
   const [user, setUser] = useState({});
   const [isLogin, setIsLogin] = useState(false);
 
@@ -61,50 +57,6 @@ function App() {
     }
   }, [dispatch]);
 
-  const getMusic = async () => {
-    await axios
-      .get(
-        `https://api.spotify.com/v1/search?q=${searchMusic}&type=track&access_token=${accToken}`
-      )
-      .then((response) => setMusicData(response.data.tracks.items))
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  const handleSelectedMusic = (uri) => {
-    const alreadySelected = selectedMusic.find((m) => m === uri);
-    if (alreadySelected) {
-      setSelectedMusic(selectedMusic.filter((m) => m !== uri));
-    } else {
-      setSelectedMusic([...selectedMusic, uri]);
-    }
-
-    console.log(selectedMusic);
-  };
-
-  useEffect(() => {
-    const combinedMusicsWithSelectedMusic = musicData.map((music) => ({
-      ...music,
-      isSelected: selectedMusic.find((m) => m === music.uri) ? true : false
-    }));
-    setCombinedMusics(combinedMusicsWithSelectedMusic);
-    console.log(combinedMusicsWithSelectedMusic);
-  }, [selectedMusic, musicData]);
-
-  const renderSongs = combinedMusics.map((song) => (
-    <Music
-      key={song.id}
-      image={song.album.images[1].url}
-      title={song.name}
-      artist={song.artists[0].name}
-      album={song.album.name}
-      onSelectMusic={handleSelectedMusic}
-      uri={song.uri}
-      isSelected={song.isSelected}
-    />
-  ));
-
   const LoginPage = () => {
     return (
       <div className="login-page">
@@ -119,6 +71,54 @@ function App() {
   };
 
   const CreatePlaylistPage = () => {
+    const [searchMusic, setSearchMusic] = useState("");
+    const [musicData, setMusicData] = useState([]);
+    const [selectedMusic, setSelectedMusic] = useState([]);
+    const [combinedMusics, setCombinedMusics] = useState([]);
+    const getMusic = async () => {
+      await axios
+        .get(
+          `https://api.spotify.com/v1/search?q=${searchMusic}&type=track&access_token=${accToken}`
+        )
+        .then((response) => setMusicData(response.data.tracks.items))
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+  
+    const handleSelectedMusic = (uri) => {
+      const alreadySelected = selectedMusic.find((m) => m === uri);
+      if (alreadySelected) {
+        setSelectedMusic(selectedMusic.filter((m) => m !== uri));
+      } else {
+        setSelectedMusic([...selectedMusic, uri]);
+      }
+  
+      console.log(selectedMusic);
+    };
+  
+    useEffect(() => {
+      const combinedMusicsWithSelectedMusic = musicData.map((music) => ({
+        ...music,
+        isSelected: selectedMusic.find((m) => m === music.uri) ? true : false
+      }));
+      setCombinedMusics(combinedMusicsWithSelectedMusic);
+      console.log(combinedMusicsWithSelectedMusic);
+    }, [selectedMusic, musicData]);
+  
+    const renderSongs = combinedMusics.map((song) => (
+      <Music
+        key={song.id}
+        image={song.album.images[1].url}
+        title={song.name}
+        artist={song.artists[0].name}
+        album={song.album.name}
+        onSelectMusic={handleSelectedMusic}
+        uri={song.uri}
+        isSelected={song.isSelected}
+      />
+    ));
+
     return (
       <div className="main">
         <header>
