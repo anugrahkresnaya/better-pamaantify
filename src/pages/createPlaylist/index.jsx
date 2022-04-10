@@ -3,10 +3,8 @@ import { useState, useEffect } from "react";
 import CreatePlaylist from "../../components/playlist";
 import Music from "../../components/music";
 import { useSelector } from "react-redux";
-// import url from "../../components/data/Auth";
 
 const CreatePlaylistPage = () => {
-	// const token = useSelector((state) => state.token);
 	const [accToken, setAccToken] = useState("");
   const [searchMusic, setSearchMusic] = useState("");
   const [musicData, setMusicData] = useState([]);

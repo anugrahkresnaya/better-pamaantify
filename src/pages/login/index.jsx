@@ -21,7 +21,6 @@ const LoginPage = () => {
               "Content-Type": "application/json",
             },
           };
-					// console.log(requestOptions);
 
 					const response = await fetch(
 						'https://api.spotify.com/v1/me',
