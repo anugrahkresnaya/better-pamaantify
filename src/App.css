@@ -1,6 +1,5 @@
 html {
   background: #191414;
-  /* background-size: cover; */
   height: 100%;
 }
 
@@ -13,20 +12,48 @@ html {
   justify-content: space-between;
 }
 
+header {
+  margin: 0 20px;
+}
+
 header h1 {
   color: white;
 }
+
+/* form style */
 
 form {
   color: white;
 }
 
 .music-content {
+  color: white;
+}
+
+label {
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+input {
   border: 2px solid #1DB954;
   border-radius: 5px;
-  text-align: center;
-  padding: 20px 0;
+  font-size: 14px;
+  background-color: transparent;
   color: white;
+  padding: 5px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+textarea {
+  border: 2px solid #1DB954;
+  border-radius: 5px;
+  font-size: 14px;
+  background-color: transparent;
+  color: white;
+  padding: 5px;
+  margin-right: 20px;
 }
 
 button {
@@ -47,23 +74,34 @@ button:hover {
   color: black;
 }
 
+/* music content style */
+
 .music-box {
-  /* border: 1px solid white; */
-  margin-bottom: 20px;
-  width: 40%;
+  display: flex;
+  width: 100%;
+  height: 100%;
 }
 
 .music-box:hover {
   background-color: #2e2e2e;
 }
 
-.music-list {
-  display: flex;
+.music-info {
+  align-self: center;
+  text-align: center;
   width: 100%;
-  flex-wrap: wrap;
-  justify-content: space-around;
 }
 
-img {
-  padding-top: 20px;
+.music-info p {
+  color: rgb(179,179,179);
+}
+
+.music-image {
+  height: 300px;
+  margin: 20px 0 20px 20px;
+}
+
+.music-list {
+  display: grid;
+  grid-template-columns: 50% 50%;
 }
