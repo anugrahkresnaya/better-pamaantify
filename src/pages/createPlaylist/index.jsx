@@ -3,10 +3,8 @@ import { useState, useEffect } from "react";
 import CreatePlaylist from "../../components/playlist";
 import Music from "../../components/music";
 import { useSelector } from "react-redux";
-// import url from "../../components/data/Auth";
 
 const CreatePlaylistPage = () => {
-	// const token = useSelector((state) => state.token);
 	const [accToken, setAccToken] = useState("");
   const [searchMusic, setSearchMusic] = useState("");
   const [musicData, setMusicData] = useState([]);
@@ -21,7 +19,6 @@ const CreatePlaylistPage = () => {
     setUser(userData);
   }, [accessToken, userData]);
 
-  // console.log(accessToken);
   const getMusic = async () => {
     await axios
 			.get(
@@ -32,7 +29,6 @@ const CreatePlaylistPage = () => {
 				console.log(err);
 			});
 		};
-    // console.log(accToken);
     
 	const handleSelectedMusic = (uri) => {
 		const alreadySelected = selectedMusic.find((m) => m === uri);
@@ -41,8 +37,6 @@ const CreatePlaylistPage = () => {
 		} else {
 			setSelectedMusic([...selectedMusic, uri]);
 		}
-
-		console.log(selectedMusic);
 	};
     
 	useEffect(() => {
@@ -51,7 +45,6 @@ const CreatePlaylistPage = () => {
 			isSelected: selectedMusic.find((m) => m === music.uri) ? true : false
 		}));
 		setCombinedMusics(combinedMusicsWithSelectedMusic);
-		console.log(combinedMusicsWithSelectedMusic);
 	}, [selectedMusic, musicData]);
     
 	const renderSongs = combinedMusics.map((song) => (
@@ -74,42 +67,29 @@ const CreatePlaylistPage = () => {
             <div className="logo">
               <h1>Pamaantify</h1>
             </div>
-            {/* <div className="login">
-              {!isLogin ? (
-                <a href={url}>Login</a>
-              ) : (
-                <a href="http://localhost:3000/">Logout</a>
-              )}
-            </div> */}
           </div>
           <h1>Create Playlist</h1>
-          {/* <p>{token.token}</p> */}
         </header>
         <main>
-          <div className="playlist-content">
-            {/* {isLogin && (
-              <>
-                <CreatePlaylist accessToken={accToken} userId={user.id} uris={selectedMusic}/>
-              </>
-            )} */}
-            <CreatePlaylist
-              accessToken={accToken}
-              userId={user.id}
-              uris={selectedMusic}
-            />
-          </div>
-          <div className="search-bar">
-            <input
-              type="search"
-              onChange={(e) => {
-                console.log(e.target.value);
-                setSearchMusic(e.target.value)}}
-            />
-            <button onClick={getMusic}>search</button>
+          <div className="container">
+            <div className="playlist-content">
+              <CreatePlaylist
+                accessToken={accToken}
+                userId={user.id}
+                uris={selectedMusic}
+              />
+            </div>
+            <div className="search-bar">
+              <input
+                type="search"
+                onChange={(e) => setSearchMusic(e.target.value)}
+              />
+              <button onClick={getMusic}>search</button>
+            </div>
           </div>
           <div className="music-desc">
             <div className="container">
-              <div className="music-content">
+              <div className="music-content border-list">
                 <div className="music-list">{renderSongs}</div>
               </div>
             </div>
