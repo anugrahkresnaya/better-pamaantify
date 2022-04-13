@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setToken } from "../../store/tokenSlice";
 import url from '../../components/data/Auth'
+import { Center, Button } from '@chakra-ui/react'
 
 const LoginPage = () => {
 	const dispatch = useDispatch();
@@ -43,7 +44,11 @@ const LoginPage = () => {
 
 	return (
 		<>
-			<a href={url}>Login</a>
+			<Center mt='10px'>
+				<Button colorScheme='teal' variant='outline'>
+					<a href={url}>Login</a>
+				</Button>
+			</Center>
 		</>
 	);
 }

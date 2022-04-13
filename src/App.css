@@ -1,4 +1,4 @@
-html {
+/* html {
   background: #191414;
   height: 100%;
 }
@@ -18,11 +18,11 @@ header {
 
 header h1 {
   color: white;
-}
+} */
 
 /* form style */
 
-form {
+/* form {
   color: white;
 }
 
@@ -72,11 +72,11 @@ button {
 button:hover {
   background-color: #1DB954;
   color: black;
-}
+} */
 
 /* music content style */
 
-.music-box {
+/* .music-box {
   display: flex;
   width: 100%;
   height: 100%;
@@ -104,4 +104,4 @@ button:hover {
 .music-list {
   display: grid;
   grid-template-columns: 50% 50%;
-}
+} */

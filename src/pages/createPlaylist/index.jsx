@@ -3,6 +3,12 @@ import { useState, useEffect } from "react";
 import CreatePlaylist from "../../components/playlist";
 import Music from "../../components/music";
 import { useSelector } from "react-redux";
+import { 
+  Button,
+  Input,
+  Grid,
+  Heading,
+} from '@chakra-ui/react'
 
 const CreatePlaylistPage = () => {
 	const [accToken, setAccToken] = useState("");
@@ -65,7 +71,7 @@ const CreatePlaylistPage = () => {
         <header>
           <div className="navbar">
             <div className="logo">
-              <h1>Pamaantify</h1>
+              <Heading as='h1' size='2xl'>Pamaantify</Heading>
             </div>
           </div>
           <h1>Create Playlist</h1>
@@ -80,17 +86,28 @@ const CreatePlaylistPage = () => {
               />
             </div>
             <div className="search-bar">
-              <input
+              <Input
+                placeholder="Search Music"
                 type="search"
                 onChange={(e) => setSearchMusic(e.target.value)}
               />
-              <button onClick={getMusic}>search</button>
+              <Button 
+                colorScheme='teal'
+                variant='outline'
+                onClick={getMusic}
+              >
+                search
+              </Button>
             </div>
           </div>
           <div className="music-desc">
             <div className="container">
               <div className="music-content border-list">
-                <div className="music-list">{renderSongs}</div>
+                <div className="music-list">
+                <Grid templateColumns='repeat(5, 1fr)' gap={6}>
+                  {renderSongs}
+                </Grid>
+                </div>
               </div>
             </div>
           </div>

@@ -1,5 +1,10 @@
 // import axios from "axios";
 import { useState } from "react";
+import { 
+	Button,
+	Input,
+	Textarea 
+} from '@chakra-ui/react'
 
 const CreatePlaylist = ({accessToken, userId, uris}) => {
 	const [form, setForm] = useState({
@@ -15,7 +20,7 @@ const CreatePlaylist = ({accessToken, userId, uris}) => {
 	const handleCreatePlaylist = async (e) => {
 		e.preventDefault();
 
-		if (form.title.length > 5) {
+		if (form.title.length > 10) {
 			try {
 				const requestOptions = {
 					method: 'POST',
@@ -56,14 +61,16 @@ const CreatePlaylist = ({accessToken, userId, uris}) => {
 				alert(err)
 			}
 		} else {
-			alert('Title must be larger than 5 characters')
+			alert('Title must be larger than 10 characters')
 		}
 	};
 
 	return <form onSubmit={handleCreatePlaylist}>
 		<label htmlFor="title">Title</label>
 		<br />
-		<input 
+		<Input 
+			// width="100px"
+			placeholder="Create a title for your playlist (min 10 characters)"
 			type="text" 
 			name="title" 
 			id="title"
@@ -73,7 +80,8 @@ const CreatePlaylist = ({accessToken, userId, uris}) => {
 		<br />
 		<label htmlFor="description">Description</label>
 		<br />
-		<textarea 
+		<Textarea 
+			placeholder="Create a description for your playlist"
 			name="description" 
 			id="description" 
 			cols="30" 
@@ -81,9 +89,11 @@ const CreatePlaylist = ({accessToken, userId, uris}) => {
 			value={form.description}
 			onChange={handleChange}
 		>
-		</textarea>
+		</Textarea>
 		<br />
-		<button type="submit">Create</button>
+		<Button colorScheme='teal' variant='outline' type="submit">
+    	Create
+  	</Button>
 	</form>
 }
 
