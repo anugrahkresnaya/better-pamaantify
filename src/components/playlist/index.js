@@ -65,6 +65,8 @@ const CreatePlaylist = ({accessToken, userId, uris}) => {
 		}
 	};
 
+	console.log(CreatePlaylist);
+
 	return <form onSubmit={handleCreatePlaylist}>
 		<label htmlFor="title">Title</label>
 		<br />

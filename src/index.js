@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import store from './store/store';
+import { store } from './store/store';
 import { Provider } from 'react-redux';
 import { ChakraProvider } from '@chakra-ui/react';
 import theme from './components/themes/theme';
