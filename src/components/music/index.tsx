@@ -17,6 +17,7 @@ const Music = (props: PropsMusic) => {
 			<div className="music-image">
 				<Center>
 				<img
+				data-testid='image-preview'
 				src={props.image}
 				alt="album"
 				/>
@@ -24,9 +25,9 @@ const Music = (props: PropsMusic) => {
 			</div>
 			<div className="music-info">
 				<Center flexDirection='column'>
-					<Heading as='h3' size='md' textAlign='center'>{props.title}</Heading>
-					<Text fontSize='sm'>{props.artist}</Text>
-					<Text fontSize='sm'>{props.album}</Text>
+					<Heading as='h3' size='md' textAlign='center' data-testid='title'>{props.title}</Heading>
+					<Text fontSize='sm' data-testid='artist'>{props.artist}</Text>
+					<Text fontSize='sm' data-testid='album'>{props.album}</Text>
 					<Button 
 						colorScheme='teal' 
 						variant='outline' 
