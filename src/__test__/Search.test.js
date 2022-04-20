@@ -1,7 +1,5 @@
-import { render, screen } from '@testing-library/react';
-import CreatePlaylist from '../components/playlist';
 import { server } from '../mocks/server';
-import { waitFor } from '@testing-library/dom';
+import { waitFor } from '@testing-library/react';
 
 beforeAll(() => server.listen())
 afterEach(() => server.resetHandlers())
@@ -12,6 +10,6 @@ test('shoould render track component', async () => {
   .then(data => data.json())
   .catch(err => console.log(err))
   await waitFor(() => {
-    expect(spotData.items).toBeTruthy()
-  })
+    expect(spotData.items).toHaveLength(spotData.items.length);
+  });
 });
