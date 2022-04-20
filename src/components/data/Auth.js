@@ -1,5 +1,5 @@
 var client_id = process.env.REACT_APP_CLIENT_ID;
-var redirect_uri = 'https://pamaantify.netlify.app/';
+var redirect_uri = 'https://pamaantify.vercel.app/';
 
 const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
 
