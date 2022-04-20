@@ -10,19 +10,6 @@ import {
   Heading,
 } from '@chakra-ui/react';
 import { useAppSelector } from "store/hooks";
-// import { Interface } from "readline";
-// import { InterfaceType } from "typescript";
-
-// interface SongType {
-//   id: string,
-//   name: string,
-//   artists: [{ url: string }],
-//   album: {
-//     images: [{ name: string}],
-//   },
-//   uri: string,
-//   isSelected: isSelected,
-// }
 
 interface SongType {
   id: string,
@@ -36,16 +23,16 @@ interface SongType {
   isSelected: isSelected,
 }
 
-interface UserType {
-  token: {
-    token: {
-      access_token: string,
-      user: {
-        id: string,
-      }
-    }
-  }
-}
+// interface UserType {
+//   token: {
+//     token: {
+//       access_token: string,
+//       user: {
+//         id: string,
+//       }
+//     }
+//   }
+// }
 
 type isSelected = boolean;
 
@@ -59,7 +46,7 @@ const CreatePlaylistPage = () => {
   const [musicData, setMusicData] = useState<SongType[]>([]);
   const [selectedMusic, setSelectedMusic] = useState<SelectedSongType['uri'][]>([]);
   const [combinedMusics, setCombinedMusics] = useState<SongType[]>([]);
-  const [user, setUser] = useState<any>({} as UserType);
+  const [user, setUser] = useState<any>({});
 	const accessToken = useAppSelector((state: any) => state.token.token.accessToken);
   const userData = useAppSelector((state) => state.token.user);
   

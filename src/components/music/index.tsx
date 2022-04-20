@@ -12,7 +12,7 @@ interface PropsMusic {
 }
 const Music = (props: PropsMusic) => {
 	return (
-	<div className="music-box">
+	<div data-testid="music-box">
 		<Flex flexDirection='column'>
 			<div className="music-image">
 				<Center>

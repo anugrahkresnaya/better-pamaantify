@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import Music from 'components/music';
 // import { Provider } from 'react-redux';
 // import CreatePlaylistPage from 'pages/CreatePlaylist';
@@ -18,3 +18,13 @@ test('render track component', () => {
   expect(album).toBeInTheDocument();
   expect(artist).toBeInTheDocument();
 })
+
+// test('render all track components', () => {
+//   render(<Music />);
+
+//   const trackSection = screen.getByTestId('music-box');
+
+//   const trackImages = within(trackSection).getAllByTestId('image-preview');
+
+//   expect(trackImages).toHaveLength(1);
+// });
