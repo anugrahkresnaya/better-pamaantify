@@ -1,4 +1,3 @@
-import "./App.css";
 import { useSelector } from "react-redux";
 import LoginPage from "./pages/login";
 import CreatePlaylistPage from "./pages/CreatePlaylist";
@@ -8,6 +7,7 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
+import UserPage from "pages/UserPage";
 
 function App() {
   const isLogin = useSelector(state => state.token.isLogin);
@@ -21,6 +21,9 @@ function App() {
           <Switch>
             <Route path="/create-playlist">
               {isLogin ? <CreatePlaylistPage /> : <Redirect to="/" />}
+            </Route>
+            <Route path='/user-profile'>
+              {isLogin ? <UserPage /> : <Redirect to="/" />}
             </Route>
             <Route path="/">
               <LoginPage />

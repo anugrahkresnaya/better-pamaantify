@@ -2,14 +2,18 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import CreatePlaylist from "../../components/playlist";
 import Music from "../../components/music";
-// import { useSelector } from "react-redux";
 import { 
   Button,
   Input,
   Grid,
+  GridItem,
   Heading,
+  InputLeftElement,
+  InputGroup,
 } from '@chakra-ui/react';
+import { Search2Icon } from "@chakra-ui/icons";
 import { useAppSelector } from "store/hooks";
+import Navbar from "components/navbar";
 
 interface SongType {
   id: string,
@@ -18,6 +22,7 @@ interface SongType {
     images: [{ url: string}, { url: string}],
     name: string,
   },
+  duration_ms: number,
   name: string,
   artists: [{ name: string }],
   isSelected: isSelected,
@@ -48,7 +53,7 @@ const CreatePlaylistPage = () => {
   const [combinedMusics, setCombinedMusics] = useState<SongType[]>([]);
   const [user, setUser] = useState<any>({});
 	const accessToken = useAppSelector((state: any) => state.token.token.accessToken);
-  const userData = useAppSelector((state) => state.token.user);
+  const userData = useAppSelector((state: any) => state.token.user);
   
   useEffect(() => {
     setAccToken(accessToken);
@@ -84,31 +89,43 @@ const CreatePlaylistPage = () => {
     console.log(combinedMusicsWithSelectedMusic);
 	}, [selectedMusic, musicData]);
     
-	const renderSongs = combinedMusics.map((song) => (
-		<Music
-			key={song.id}
-			image={song.album.images[1]?.url}
-			title={song.name}
-			artist={song.artists[0].name}
-			album={song.album.name}
-			onSelectMusic={handleSelectedMusic}
-			uri={song.uri}
-			isSelected={song.isSelected}
-		/>
-	));
+	const renderSongs = combinedMusics.map((song) => {
+    const convertedDuration = () => {
+      let ms: number = song.duration_ms;
+      const min = Math.floor((ms/1000/60) << 0);
+      const sec = Math.floor((ms/1000) % 60);
+
+      return(padTo2Digits(min) + ':' + padTo2Digits(sec)); 
+    }
+    const padTo2Digits = (num: number) => {
+      return num.toString().padStart(2, '0');
+    }
+    return(
+      <Music
+        key={song.id}
+        image={song.album.images[1]?.url}
+        title={song.name}
+        artist={song.artists[0].name}
+        album={song.album.name}
+        duration_ms={convertedDuration()}
+        onSelectMusic={handleSelectedMusic}
+        uri={song.uri}
+        isSelected={song.isSelected}
+      />
+    )
+  });
+
+  console.log(musicData)
     
 	return (
 		<div className="main">
-        <header>
-          <div className="navbar">
-            <div className="logo">
-              <Heading as='h1' size='2xl'>Pamaantify</Heading>
-            </div>
-          </div>
-          <h1>Create Playlist</h1>
-        </header>
-        <main>
-          <div className="container">
+      <main>
+        <div>
+          <Navbar />
+          <Heading as='h3' size='lg' ml='5' mb='5'>Create Playlist</Heading>
+        </div>
+        <Grid templateRows='repeat(1, 1fr)' templateColumns='repeat(4, 1fr)' m='5'>
+          <GridItem rowSpan={2} colSpan={1} width="400px" mr='5'>
             <div className="playlist-content">
               <CreatePlaylist
                 accessToken={accToken}
@@ -116,34 +133,48 @@ const CreatePlaylistPage = () => {
                 uris={selectedMusic}
               />
             </div>
+          </GridItem>
+          <GridItem rowSpan={1} colSpan={3} mt='3'>
             <div className="search-bar">
-              <Input
-                placeholder="Search Music"
-                type="search"
-                onChange={(e) => setSearchMusic(e.target.value)}
-              />
+              <InputGroup>
+                <InputLeftElement children={<Search2Icon color='teal.200' />} mt='6' />
+                <Input
+                  placeholder="Search Music"
+                  type="search"
+                  onChange={(e) => setSearchMusic(e.target.value)}
+                  mt='6'
+                  mb='3'
+                />
+              </InputGroup>
               <Button 
                 colorScheme='teal'
                 variant='outline'
                 onClick={getMusic}
+                mb='10'
               >
                 search
               </Button>
             </div>
-          </div>
-          <div className="music-desc">
-            <div className="container">
-              <div className="music-content border-list">
-                <div className="music-list">
-                <Grid templateColumns='repeat(5, 1fr)' gap={6}>
-                  {renderSongs}
-                </Grid>
+          </GridItem>
+          <GridItem rowSpan={2} colSpan={3}>
+            <div className="music-desc">
+              <div className="container">
+                <div className="music-content border-list">
+                  <div className="music-list">
+                  <Grid 
+                    templateColumns='repeat(5, 1fr)'
+                    gap={6} 
+                  >
+                    {renderSongs}
+                  </Grid>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </main>
-      </div>
+          </GridItem>
+        </Grid>
+      </main>
+    </div>
   );
 }
 

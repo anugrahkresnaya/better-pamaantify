@@ -1,9 +1,8 @@
-// import axios from "axios";
 import { useState } from "react";
 import { 
 	Button,
 	Input,
-	Textarea 
+	Textarea,
 } from '@chakra-ui/react'
 
 const CreatePlaylist = ({accessToken, userId, uris}) => {
@@ -65,36 +64,43 @@ const CreatePlaylist = ({accessToken, userId, uris}) => {
 		}
 	};
 
-	return <form onSubmit={handleCreatePlaylist}>
-		<label htmlFor="title">Title</label>
-		<br />
-		<Input 
-			// width="100px"
-			placeholder="Create a title for your playlist (min 10 characters)"
-			type="text" 
-			name="title" 
-			id="title"
-			value={form.title}
-			onChange={handleChange}
-		/>
-		<br />
-		<label htmlFor="description">Description</label>
-		<br />
-		<Textarea 
-			placeholder="Create a description for your playlist"
-			name="description" 
-			id="description" 
-			cols="30" 
-			rows="10"
-			value={form.description}
-			onChange={handleChange}
-		>
-		</Textarea>
-		<br />
-		<Button colorScheme='teal' variant='outline' type="submit">
-    	Create
-  	</Button>
-	</form>
+	return( 
+		<div>
+			<form onSubmit={handleCreatePlaylist}>
+				<label htmlFor="title">Title</label>
+				<br />
+				<Input
+					placeholder="Create a title for your playlist (min 10 characters)"
+					type="text" 
+					name="title" 
+					id="title"
+					value={form.title}
+					onChange={handleChange}
+					mt='3'
+					mb='3'
+				/>
+				<br />
+				<label htmlFor="description">Description</label>
+				<br />
+				<Textarea 
+					placeholder="Create a description for your playlist"
+					name="description" 
+					id="description" 
+					cols="30" 
+					rows="10"
+					value={form.description}
+					onChange={handleChange}
+					mt='3'
+					mb='3'
+				>
+				</Textarea>
+				<br />
+				<Button colorScheme='teal' variant='outline' type="submit">
+					Create
+				</Button>
+		</form>
+	</div>
+	);
 }
 
 export default CreatePlaylist;

@@ -1,11 +1,11 @@
 import { Button, Flex, Center, Heading, Text } from '@chakra-ui/react'
-// import { SelectedSongType } from 'pages/CreatePlaylist';
 
 interface PropsMusic {
 	image: string;
 	title: string;
 	artist: string;
 	album: string;
+	duration_ms: string;
 	onSelectMusic: (uri: string) => void;
 	uri: string;
 	isSelected: boolean;
@@ -28,6 +28,7 @@ const Music = (props: PropsMusic) => {
 					<Heading as='h3' size='md' textAlign='center' data-testid='title'>{props.title}</Heading>
 					<Text fontSize='sm' data-testid='artist'>{props.artist}</Text>
 					<Text fontSize='sm' data-testid='album'>{props.album}</Text>
+					<Text fontSize='sm' data-testid='duration'>{props.duration_ms}</Text>
 					<Button 
 						colorScheme='teal' 
 						variant='outline' 
