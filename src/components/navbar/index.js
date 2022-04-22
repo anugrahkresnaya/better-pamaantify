@@ -47,12 +47,13 @@ const Navbar = () => {
               ) : ('')}
               <MenuList>
                 <MenuGroup>
-                <a href='https://www.spotify.com/us/account/overview/?utm_source=spotify&utm_medium=menu&utm_campaign=your_account'><MenuItem>My Account</MenuItem></a>
+                  <a href='https://www.spotify.com/us/account/overview/?utm_source=spotify&utm_medium=menu&utm_campaign=your_account'><MenuItem>My Account</MenuItem></a>
                   <Link to='/user-profile'><MenuItem>Profile</MenuItem></Link>
                 </MenuGroup>
+                <Link to='/create-playlist'><MenuItem>Create Playlist</MenuItem></Link>
                 <MenuDivider />
                 <MenuGroup>
-                <a href='/'><MenuItem>Logout</MenuItem></a>
+                  <a href='/'><MenuItem>Logout</MenuItem></a>
                 </MenuGroup>
               </MenuList>
             </Menu>
