@@ -3,7 +3,13 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setToken } from "../../store/tokenSlice";
 import url from '../../components/data/Auth'
-import { Center, Button } from '@chakra-ui/react'
+import { 
+	Center, 
+	Button, 
+	Heading, 
+	Text, 
+	Flex
+} from '@chakra-ui/react'
 
 const LoginPage = () => {
 	const dispatch = useDispatch();
@@ -45,9 +51,13 @@ const LoginPage = () => {
 	return (
 		<>
 			<Center mt='10px'>
-				<Button colorScheme='teal' variant='outline'>
-					<a href={url}>Login</a>
-				</Button>
+				<Flex flexDirection='column' justifyContent='center' justifyItems='center' textAlign='center'>
+					<Heading as="h1" size='2xl' color='teal.200' m={10}>Welcome to Pamaantify</Heading>
+					<Text fontSize='lg' ml={5} mt='10' mb='10'>Please login to continue</Text>
+					<Button colorScheme='teal' variant='outline' width='50%' m='0 auto'>
+						<a href={url}>Login</a>
+					</Button>
+				</Flex>
 			</Center>
 		</>
 	);
