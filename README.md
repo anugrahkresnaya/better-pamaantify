@@ -1,70 +1,43 @@
-# Getting Started with Create React App
+# Pamaantify
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Pamaantify is a website based on Create-React-App and the purpose of this website is to create a playlist for your Spotify account.
 
-## Available Scripts
+And this website is a submission for Final Project at Generasi GIGIH 2.0 by YABB & GoTo.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+Features implementations (requirements):
+- User has to login first before creating a playlist. If user hasn't login, user will be redirected to login page
+- User can search song
+- User can see songs details (title, artist, album, and duration)
+- User can select and deselect songs
+- Can't select the same song that already selected
+- Selected song will not be lost after another search
+- Create a playlist on the form
+- Create a private and not collaborative playlist
+- Showing an notification if playlist successfully created
+- Using react-redux to store access token, user, and login state
+- Using the test-library for testing
+- Tried MSW to testing but not working
+- User has to input 10 characters for playlist title, if not, it will be showing an alert to remind user
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Additional features (bonus):
+- Add profile button in navbar to show dropdown menu such as my account, profile, and logout
+- Profile button also shows username and profile picture
+- Add a profile page to show user profile by accessing from profile button
+- Add a logout function
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Installation
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Clone the repository
+```bash
+git clone https://github.com/anugrahkresnaya/GIGIH2-FE-Homework.git
+```
+2. Install the dependencies in the project directory
+```bash
+npm install
+```
+3. Start the app
+```bash
+npm run start or npm start
+```

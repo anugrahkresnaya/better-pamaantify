@@ -1,15 +1,22 @@
 import { server } from '../mocks/server';
-import { waitFor } from '@testing-library/react';
+import { screen, render, waitFor } from '@testing-library/react';
+import CreatePlaylistPage from 'pages/CreatePlaylist';
+import { Provider } from 'react-redux';
+import store from 'store/store';
 
-beforeAll(() => server.listen())
-afterEach(() => server.resetHandlers())
-afterAll(() => server.close())
+describe('CreatePlaylistPage', () => {
+  beforeAll(() => server.listen())
+  afterEach(() => server.resetHandlers())
+  afterAll(() => server.close())
 
-test('shoould render track component', async () => {
-  const spotData = await fetch('https://api.spotify.com/v1/search?q=takayan&type=track')
-  .then(data => data.json())
-  .catch(err => console.log(err))
-  await waitFor(() => {
-    expect(spotData.items).toHaveLength(spotData.items.length);
+  test('shoould fetch api', async () => {
+    render(
+      <Provider store={store}>
+        <CreatePlaylistPage />
+      </Provider>
+    )
+    await waitFor(()=> {
+      expect(screen.getByText('takayan')).toBeInTheDocument()
+    })
   });
 });

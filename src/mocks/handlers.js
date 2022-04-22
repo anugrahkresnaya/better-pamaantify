@@ -6,9 +6,11 @@ export const handlers = [
     (req, res, ctx) => {
       return res(
         ctx.status(200),
-        ctx.json({
-          responseSearch: 'takayan',
-        }),
+        ctx.json([{
+          artists: { 
+            name: 'takayan',
+          }
+        }]),
       )
     }
   ),
