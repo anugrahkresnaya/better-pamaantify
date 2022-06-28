@@ -40,7 +40,7 @@ const Navbar = () => {
                 rightIcon={<ChevronDownIcon />}
               >
                 <Flex alignItems='center'>
-                  <Avatar size='sm' mr='2' src={userData.images[0].url} />
+                  <Avatar size='sm' mr='2' src={userData.images[0]?.url} />
                   {userData.display_name}
                 </Flex>
               </MenuButton>
