@@ -1,5 +1,5 @@
 var client_id = process.env.REACT_APP_CLIENT_ID;
-var redirect_uri = 'https://pamaantify.vercel.app/';
+var redirect_uri = 'http://localhost:3000/';
 
 const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
 
@@ -15,7 +15,7 @@ const generateRandomString = (length) => {
 var state = generateRandomString(16);
 
 localStorage.setItem("TOKEN", state);
-var scope = 'playlist-modify-private';
+var scope = 'playlist-modify-private user-top-read';
 
 var url = 'https://accounts.spotify.com/authorize';
 url += '?response_type=token';
