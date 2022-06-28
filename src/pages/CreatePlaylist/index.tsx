@@ -28,17 +28,6 @@ interface SongType {
   isSelected: isSelected,
 }
 
-// interface UserType {
-//   token: {
-//     token: {
-//       access_token: string,
-//       user: {
-//         id: string,
-//       }
-//     }
-//   }
-// }
-
 type isSelected = boolean;
 
 export interface SelectedSongType {
